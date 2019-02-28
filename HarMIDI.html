@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HarMIDI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/HarMIDI.css">
+	<style type="text/css" media="screen">
+    /*canvas, img {}*/
+    canvas { background:url(img/canvas_background.png); }
+  	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h2>HarMIDI</h2>
+	<div class="container_all">
+		<!--
+		<div id="container_0" class = "container">
+			<h6>Select the number of the Channels:</h6>
+			<div class="channel">
+				<div class="choose" id="choose_melody">Melody:</div>
+				<input type="text" id="melody_input" value= "" class="input_values">
+			</div>
+			<div class="channel chord">
+				<div class="choose chord_class" id="choose_chords">Chords:</div>
+				<input type="text" id="chord_input" value= "" class="input_values chord_class">
+			</div>
+		</div>
+-->
+		<div id="container_1" class="container">
+			<div>
+				<h6 id="start" class="left-icon">Start/stop acquiring data:</h6>
+				<button id="rec_button" class="btn btn-success">Start</button>
+			</div>
+		</div>
+
+		<div id="container_2" class="container">
+			<div>
+				<div class="left-icon">
+					<h6 id="h6_play">Play the melody:</h6>
+					<button id="play_button" class="btn btn-success">Play</button>
+				</div>
+
+				<div class="slidercontainer" id="slider2">
+					<p class="volume_tag left-icon">Volume: <span id="span1"></span></p>
+					<div class="right-icon">
+						<input type="range" name="volume" min="0.0" max="1.0" step="0.01" value="0.5" id="volumeControl_1" class="slider">
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+		
+	</div>
+
+	<div class="right_column">
+
+		<div id="container_3" class="container">
+			<h6>Listen to the harmonized chords:</h6>
+			<div id="container_chords">
+				<button id="harm_button" class="btn btn-success ctp">1st counterpoint version</button>
+				<div class="slidercontainer sliders" id="slider3">
+					<p class="volume_tag_ctp left-icon">1Ctp volume: <span id="span2"></span></p>
+					<div class="right-icon">
+						<input type="range" name="volume" min="0.0" max="1" step="0.01" value="0.5" id="volumeControl_2" class="slider">
+					</div>
+				</div>
+				<div id="container_5">
+					<button id="second_ctp" class="btn btn-success ctp">2nd counterpoint version</button>
+					<div class="slidercontainer sliders" id="slider5">
+						<p class="volume_tag_ctp left-icon" id="second_ctp_volume">2Ctp volume: <span id="span4"></span></p>
+						<div class="right-icon">
+							<input type="range" name="volume" min="0.0" max="1" step="0.01" value="0.5" id="volumeControl_4" class="slider">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+<!--
+		<div id="container_4" class="container">
+			<h6>Listen to the harmonized version of the input piece:</h6>
+			<button id="play_all" class="btn btn-success">Complete version</button>
+
+			<div id="slider4">
+				<div class="complete">
+					<p class="volume_tag_complete">Melody volume: <span id="span3_melody"></span></p>
+					<div class="slider_complete">
+						<input type="range" name="volume" min="0.0" max="1" step="0.01" value="0.5" id="volumeControl_3_melody" class="slider">
+					</div>
+				</div>
+				<div class="complete">
+					<p class="volume_tag_complete">Chords volume: <span id="span3_chords"></span></p>
+					<div class="slider_complete">
+						<input type="range" name="volume" min="0.0" max="1" step="0.01" value="0.5" id="volumeControl_3_chords" class="slider">
+					</div>
+				</div>
+			</div>
+		</div>
+-->
+<div class="drawing">
+		<div class = "notes_names">
+			<div class="names_box">
+			G<br>
+			G#<br>
+			A<br>
+			Bb<br>
+			B<br>
+			C<br>
+			C#<br>
+			D<br>
+			Eb<br>
+			E<br>
+			F<br>
+			F#<br>
+			G<br>
+			G#<br>
+			A<br>
+			Bb<br>
+			B<br>
+			C<br>
+			C#<br>
+			D<br>
+			Eb<br>
+			E<br>
+			F<br>
+			F#<br>
+			G<br>
+			G#<br>
+			A<br>
+			Bb<br>
+			B<br>
+			C<br>
+			C#<br>
+			D<br>
+			Eb<br>
+			E<br>
+			F<br>
+			F#<br>
+			G<br>
+			G#<br>
+			A<br>
+			Bb<br>
+			B<br>
+			C<br>
+			C#<br>
+			D<br>
+			Eb<br>
+			E<br>
+			F<br>
+			F#<br>
+			G<br>
+			G#
+		</div>
+		</div>
+
+		<div id="canvas_container">
+		<canvas class="canvas_block" id="time_canvas"></canvas>
+		<!--<p id="canvas_tag">Spectrum visualization</p>--->
+		</div>
+</div>
+
+	<script src="js/HarMIDI1.js"></script>
+</body>
+</html>
+
+
