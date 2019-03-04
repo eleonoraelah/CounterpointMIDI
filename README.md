@@ -87,8 +87,7 @@ with this application is possible to visualize:
 * The application works both online and offline
 * The code is written in HTML5, CSS and JAVASCRIPT
 * The code is available on https://github.com/eleonoraelah/CounterpointMIDI
-* The Web Application is available on 
-
+* The Web Application is available on http://counterpointmidi.surge.sh/
 
 
 
