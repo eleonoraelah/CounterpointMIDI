@@ -119,7 +119,13 @@
 			this.classList.toggle("clicked");
 			key_note = Number(document.getElementsByClassName("input_radio clicked").louie.value);
 			console.log(key_note);
-			keyNoteArray();
+			keyNoteArray(key_note);
+			if (melody_array.length>1){
+				console.log("Other key in between");
+				ctpMaking();
+				last_cf_index = melody_array.length;
+				last_ctp2_index = ctp2_array.length;
+			}
 		}
 
 	//record button functionalities:
@@ -205,19 +211,20 @@
 		ctp1_array = new Array;
 		cons_first_notes = [0,7,12];
 		cons_last_notes = [0,12];
-		//cons_notes = [3,4,8,9];
-		cons_notes = [4,9];
+		cons_notes = [3,4,8,9];
+		//cons_notes = [4,9];
 
 		// Managing modes and scales
 		//IONIAN
 		//possible_notes = [key_note,key_note+2,key_note+4,key_note+5,key_note+7,key_note+9,key_note+11,key_note+12];
-		function keyNoteArray(){
+		function keyNoteArray(key_note){
 			possible_notes = new Array;
 			for (var i = 0; i < 4; i++) {
 				possible_notes = possible_notes.concat([key_note+(12*i),key_note+2+12*i,key_note+4+12*i,key_note+5+12*i,
 					key_note+7+12*i,key_note+9+12*i,key_note+11+12*i]);
 			}
 			possible_notes[possible_notes.length] = key_note+12*4;
+			console.log(possible_notes);
 		}
 
 		//Second Species ctp notes
@@ -231,7 +238,7 @@
 			ctp2_duration = ctp2_duration.concat(Array((melody_array.length-first_cf_index)*2-1));
 			ctp2_duration = ctp2_duration.fill(melody_duration/2,first_ctp2_index,ctp2_duration.length-1);
 			ctp2_duration = ctp2_duration.fill(melody_duration,ctp2_duration.length-1);
-			console.log(ctp2_duration);
+			//console.log(ctp2_duration);
 			dx_2ctp.length = ctp2_duration.length;
 			dx_2ctp = dx_2ctp.fill(dx/2,first_ctp2_index,ctp2_duration.length-1);
 			dx_2ctp = dx_2ctp.fill(dx,ctp2_duration.length-1);
@@ -240,14 +247,25 @@
 
 			for (ctp_i = first_cf_index; ctp_i<melody_array.length; ctp_i++){
 			// First Species Ctp array
-				ctp1_array[ctp_i] = melody_array[ctp_i][1] + cons_notes[Math.floor(Math.random() * cons_notes.length)];
+				while (!possible_notes.includes(ctp1_array[ctp_i])){
+					//console.log(ctp1_array[ctp_i]);
+					ctp1_array[ctp_i] = melody_array[ctp_i][1] + cons_notes[Math.floor(Math.random() * cons_notes.length)];
+				}
+				console.log("Note chosen " + ctp1_array[ctp_i]);
 
 				if (ctp2_i<ctp2_duration.length){
 				// Second Species Ctp array	
+				while (!possible_notes.includes(ctp2_array[ctp2_i])){
 				//consonant notes
+					//console.log(ctp2_array[ctp2_i]);
 					ctp2_array[ctp2_i] = melody_array[ctp_i][1] + cons_notes[Math.floor(Math.random() * cons_notes.length)];
+				}
+				while (!possible_notes.includes(ctp2_array[ctp2_i+1])){
 				//dissonant notes
+					//console.log(ctp2_array[ctp2_i+1]);
 					ctp2_array[ctp2_i+1] = melody_array[ctp_i][1] + cons_notes[Math.floor(Math.random() * cons_notes.length)];
+				}
+				console.log("Note chosen for ctp2 " + ctp2_array[ctp2_i] + " and " + ctp2_array[ctp2_i+1]);
 				//melody notes for 2ctp
 					cf_ctp2[ctp2_i] = melody_array[ctp_i][1];
 					cf_ctp2[ctp2_i+1] = melody_array[ctp_i][1];
@@ -265,23 +283,25 @@
 			ctp2_array[first_ctp2_index] = melody_array[first_cf_index][1] + cons_first_notes[Math.floor(Math.random() * cons_first_notes.length)];
 
 			//Clausola vera
-			if ((melody_array[melody_array.length-1][1] - melody_array[melody_array.length-2][1] == 1) || (melody_array[melody_array.length-1][1] - melody_array[melody_array.length-2][1] == 2)){
-				ctp1_array[melody_array.length-1] = melody_array[melody_array.length-1][1] + cons_last_notes[Math.floor(Math.random() * cons_last_notes.length)];
-				ctp1_array[melody_array.length-2] = ctp1_array[melody_array.length-1] + 2;
-				
-				ctp2_array[cf_ctp2.length-1] = melody_array[melody_array.length-1][1] + cons_last_notes[Math.floor(Math.random() * cons_last_notes.length)];
-				ctp2_array[cf_ctp2.length-2] = ctp2_array[cf_ctp2.length-1];
-				ctp2_array[cf_ctp2.length-3] = ctp2_array[cf_ctp2.length-1] + 2;
-				/*console.log("ctp2_array[length-2] = " + ctp2_array[melody_array.length-2]);
-				console.log("ctp2_array[length-1] = " + ctp2_array[cf_ctp2.length-1]);*/
+			if (send == false){
+				if ((melody_array[melody_array.length-1][1] - melody_array[melody_array.length-2][1] == 1) || (melody_array[melody_array.length-1][1] - melody_array[melody_array.length-2][1] == 2)){
+					ctp1_array[melody_array.length-1] = melody_array[melody_array.length-1][1] + cons_last_notes[Math.floor(Math.random() * cons_last_notes.length)];
+					ctp1_array[melody_array.length-2] = ctp1_array[melody_array.length-1] + 2;
+					
+					ctp2_array[cf_ctp2.length-1] = melody_array[melody_array.length-1][1] + cons_last_notes[Math.floor(Math.random() * cons_last_notes.length)];
+					ctp2_array[cf_ctp2.length-2] = ctp2_array[cf_ctp2.length-1];
+					ctp2_array[cf_ctp2.length-3] = ctp2_array[cf_ctp2.length-1] + 2;
+					/*console.log("ctp2_array[length-2] = " + ctp2_array[melody_array.length-2]);
+					console.log("ctp2_array[length-1] = " + ctp2_array[cf_ctp2.length-1]);*/
 
-			} else if ((melody_array[melody_array.length-2][1] - melody_array[melody_array.length-1][1] == 2)||(melody_array[melody_array.length-2][1] - melody_array[melody_array.length-1][1] == 1)){
-				ctp1_array[melody_array.length-1] = melody_array[melody_array.length-1][1] + cons_last_notes[Math.floor(Math.random() * cons_last_notes.length)];
-				ctp1_array[melody_array.length-2] = ctp1_array[melody_array.length-1] - 1;
+				} else if ((melody_array[melody_array.length-2][1] - melody_array[melody_array.length-1][1] == 2)||(melody_array[melody_array.length-2][1] - melody_array[melody_array.length-1][1] == 1)){
+					ctp1_array[melody_array.length-1] = melody_array[melody_array.length-1][1] + cons_last_notes[Math.floor(Math.random() * cons_last_notes.length)];
+					ctp1_array[melody_array.length-2] = ctp1_array[melody_array.length-1] - 1;
 
-				ctp2_array[cf_ctp2.length-1] = melody_array[melody_array.length-1][1] + cons_last_notes[Math.floor(Math.random() * cons_last_notes.length)];
-				ctp2_array[cf_ctp2.length-2] = ctp2_array[cf_ctp2.length-1];
-				ctp2_array[cf_ctp2.length-3] = ctp2_array[cf_ctp2.length-1] - 1;
+					ctp2_array[cf_ctp2.length-1] = melody_array[melody_array.length-1][1] + cons_last_notes[Math.floor(Math.random() * cons_last_notes.length)];
+					ctp2_array[cf_ctp2.length-2] = ctp2_array[cf_ctp2.length-1];
+					ctp2_array[cf_ctp2.length-3] = ctp2_array[cf_ctp2.length-1] - 1;
+				}
 			}
 
 			//PASSING Notes
