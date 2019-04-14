@@ -96,10 +96,29 @@ p{
 	width: 60%;
 }
 
+#container_0{
+	display: inline-flex;
+}
+
+.radio_label{
+	margin: 5px;
+	display: inline-grid;
+}
+
+#louie{
+	position: relative;
+	margin-left: 15px;
+}
+
+.key_label{
+	position: relative;
+	margin-right: 10px;
+}
+/*
 #container_1{
 	display: inline-block;
 }
-
+*/
 #start{
 	width: 35%;
 	margin-top: 1.5%;
