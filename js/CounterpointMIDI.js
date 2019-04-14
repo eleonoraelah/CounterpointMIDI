@@ -4,8 +4,6 @@
 		var ctp1_button_clicked;
 		var ctp2_button_clicked;
 
-		var key_note; // value of the key note 
-
 		var send; // Boolean variable indicating if we are recording MIDI signals or not
 
 		var first_cf_index; // First index of melody_array array in the subsequent recordings
@@ -103,20 +101,6 @@
 
 
 
-	// Selecting the key
-
-		document.querySelectorAll(".input_radio").forEach(toggleKey);
-		
-		function toggleKey(item){
-			item.onclick = keySelection;
-		}
-
-		function keySelection(){
-			document.querySelector(".input_radio.clicked").classList.toggle("clicked");
-			this.classList.toggle("clicked");
-			key_note = Number(document.getElementsByClassName("input_radio clicked").louie.value);
-			console.log(key_note);
-		}
 
 	//record button functionalities:
 		//request MIDI Access (on MIDI success)
@@ -203,10 +187,6 @@
 		cons_last_notes = [0,12];
 		//cons_notes = [3,4,8,9];
 		cons_notes = [4,9];
-
-		// Managing modes and scales
-		//IONIAN
-		possible_notes = [key_note,key_note+2,key_note+4,key_note+5,key_note+7,key_note+9,key_note+11,key_note+12];
 
 		//Second Species ctp notes
 		ctp2_duration = new Array;
@@ -575,7 +555,7 @@
 		min_canvas = 47;
 		dy = HEIGHT/23;
 		dx = 20;
-		
+
 		y_c = [0, dy, dy*3/2,2*dy,dy*5/2,3*dy,4*dy,dy*9/2,dy*5,dy*11/2,dy*6,dy*13/2];
 		for (var i = 12;i<50;i++){
 			y_c[i] = y_c[i-12]+dy*7;
