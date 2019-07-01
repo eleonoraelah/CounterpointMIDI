@@ -1,5 +1,5 @@
 # CounterpointMIDI
-<p align="center"> <img src="./img/panoramica.png" > </p> 
+<p align="center"> <img src="./img/screen.png" > </p> 
 CounterpointMIDI is a web application that creates First and Second Species Counterpoint lines over a Cantus Firmus provided by a MIDI input track transmitted with a serial (or virtual) keyboard.
 
 ### Creators
@@ -10,6 +10,7 @@ CounterpointMIDI is a web application that creates First and Second Species Coun
 ### Main features
 
 * MIDI input recording
+* Key choice
 * Playing back the input melody
 * Counterpoint notes generation
 * Sound Synthesis
@@ -18,6 +19,12 @@ CounterpointMIDI is a web application that creates First and Second Species Coun
 ### Getting started
 
 To be able to use this application the user needs to transmit a MIDI sequence via serial or virtual port, therefore the usage of a physical or virtual keyboard is required.
+
+### Key choice
+
+Select the key your Cantus Firmus is in.
+
+<p align="center"> <img src="./img/key.png" > </p> 
 
 ### MIDI input recording
 
