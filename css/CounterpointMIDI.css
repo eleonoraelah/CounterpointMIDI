@@ -26,9 +26,13 @@ p{
 }
 
 .container_all{
-	margin-top: 1%;
+	margin-top: 0%;
 	float:left;
 	width: 50%;
+}
+
+#container_3{
+	margin-top: 4.5%;
 }
 
 .container{
