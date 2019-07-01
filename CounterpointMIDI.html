@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CounterpointMIDI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/CounterpointMIDI.css">
+	<style type="text/css" media="screen">
+    canvas { background:url(img/canvas_background.png); }
+  	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h2>CounterpointMIDI</h2>
+	<div class="container_all">
+
+		<div id="container_1" class="container">
+
+			<div id="container_0">
+				<div class = "radio_label">
+				  <input type="radio" id="louie" class="input_radio clicked" name="key" value="36">
+				  <label for="huey" class="key_label">C maj</label>
+				</div>
+
+				<div class = "radio_label">
+				  <input type="radio" id="louie" class="input_radio" name="key" value="38">
+				  <label for="dewey" class="key_label">D maj</label>
+				</div>
+
+				<div class = "radio_label">
+				  <input type="radio" id="louie" class="input_radio" name="key" value="40">
+				  <label for="louie" class="key_label">E maj</label>
+				</div>
+
+				<div class = "radio_label">
+				  <input type="radio" id="louie" class="input_radio" name="key" value="41">
+				  <label for="louie" class="key_label">F maj</label>
+				</div>
+
+				<div class = "radio_label">
+				  <input type="radio" id="louie" class="input_radio" name="key" value="43">
+				  <label for="louie" class="key_label">G maj</label>
+				</div>
+
+				<div class = "radio_label">
+				  <input type="radio" id="louie" class="input_radio" name="key" value="45">
+				  <label for="louie" class="key_label">A maj</label>
+				</div>
+
+				<div class = "radio_label">
+				  <input type="radio" id="louie" class="input_radio" name="key" value="47">
+				  <label for="louie" class="key_label">B maj</label>
+				</div>
+			</div>
+
+			<div>
+				<h6 id="start" class="left-icon">Start/stop acquiring data:</h6>
+				<button id="rec_button" class="btn btn-success">Start</button>
+			</div>
+		</div>
+
+		<div id="container_2" class="container">
+			<div>
+				<div class="left-icon">
+					<h6 id="h6_play">Play the melody:</h6>
+					<button id="play_button" class="btn btn-success">Play</button>
+				</div>
+
+				<div class="slidercontainer" id="slider2">
+					<p class="volume_tag left-icon">Volume: <span id="span1"></span></p>
+					<div class="right-icon">
+						<input type="range" name="volume" min="0.0" max="1.0" step="0.01" value="0.5" id="volumeControl_1" class="slider">
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+		
+	</div>
+
+	<div class="right_column">
+
+		<div id="container_3" class="container">
+			<h6>Listen to the harmonized chords:</h6>
+			<div id="container_chords">
+				<button id="ctp1_button" class="btn btn-success ctp">1st counterpoint version</button>
+				<div class="slidercontainer sliders" id="slider3">
+					<p class="volume_tag_ctp left-icon">1Ctp volume: <span id="span2"></span></p>
+					<div class="right-icon">
+						<input type="range" name="volume" min="0.0" max="1" step="0.01" value="0.5" id="volumeControl_2" class="slider">
+					</div>
+				</div>
+				<div id="container_5">
+					<button id="ctp2_button" class="btn btn-success ctp">2nd counterpoint version</button>
+					<div class="slidercontainer sliders" id="slider5">
+						<p class="volume_tag_ctp left-icon" id="second_ctp_volume">2Ctp volume: <span id="span4"></span></p>
+						<div class="right-icon">
+							<input type="range" name="volume" min="0.0" max="1" step="0.01" value="0.5" id="volumeControl_4" class="slider">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+<div class="drawing">
+		<div class = "notes_names">
+			<div class="names_box">
+				B<br> C<br> D<br> E<br> F<br> G<br>A<br> B<br> C<br> D<br> E<br> F<br> G<br>A<br> B<br> C<br> D<br> E<br> F<br> G<br>A<br> B<br> C
+			</div>
+		</div>
+
+		<div id="canvas_container">
+		<canvas class="canvas_block" id="canvas_id"></canvas>
+		</div>
+</div>
+
+	<script src="js/CounterpointMIDIELE.js"></script>
+	<!--<script src="js/CounterpointMIDI-CECI.js"></script>-->
+</body>
+</html>
+
+
